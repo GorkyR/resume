@@ -20,6 +20,7 @@ interface Labels {
 		highschool: string
 		certification: string
 	}
+	references: string
 }
 
 const en: Labels = {
@@ -42,6 +43,7 @@ const en: Labels = {
 		highschool: titlecase('high school'),
 		certification: titlecase('certification')
 	},
+	references: titlecase('references'),
 }
 
 const es: Labels = {
@@ -64,6 +66,7 @@ const es: Labels = {
 		highschool: titlecase('secundaria', 'es'),
 		certification: titlecase('certificación', 'es'),
 	},
+	references: titlecase('referencias', 'es'),
 }
 
 export default { en, es }

@@ -172,12 +172,17 @@ export function App() {
           en: 'MSIS, Software Specialist',
           es: 'MCSI, Especialista de Software'
         }),
-        contact_info: { phone: '+1 (849) 206-8413' },
+        contact_info: {
+          email: 'jeanjmnez@gmail.com',
+          phone: '+1 (849) 206-8413',
+        },
       }
     ]
   }
 
+  useEffect(() => global_hotkey('p', window.print), [])
   useEffect(() => global_hotkey('l', () => setLang(l => l == 'en'? 'es' : 'en')), [])
+  useEffect(() => global_hotkey('s', () => {}), [])
 
   return <Template1 resume={resume} language={language}/>
 }

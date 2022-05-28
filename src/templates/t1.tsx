@@ -10,7 +10,6 @@ import styles from './t1.module.scss'
 
 export default function Template1({ resume: cv, language: lang, printing }: { resume: Resume, language?: Language, printing?: boolean }) {
 	const lbl = labels[lang ?? 'en']
-	printing ??= true
 
 	return <TableLayout className={cx(styles.content)}>
 		<tr> {/* Header */}
@@ -29,16 +28,16 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 				<div className={styles.block}>
 					<div className="flex gap-2">
 						<strong>{lbl.email}:</strong>
-						<a href={`mailto:${cv.profile.contact_info.email}`}>
+						<a href={`mailto:${cv.profile.contact_info.email}`} className="min-w-max">
 							{cv.profile.contact_info.email}
 						</a>
 					</div>
-					<div className="flex gap-2">
+					{cv.profile.contact_info.phone && <div className="flex gap-2">
 						<strong>{lbl.phone}:</strong>
-						<a href={`tel:${digits(cv.profile.contact_info.phone)}`}>
+						<a href={`tel:${digits(cv.profile.contact_info.phone)}`} className="min-w-max">
 							{cv.profile.contact_info.phone}
 						</a>
-					</div>
+					</div>}
 				</div>
 				<div className={styles.block}>
 					<div className={cx("flex max-w-min gap-4")}>
@@ -160,13 +159,34 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 								<li className="font-medium list-disc">
 									<div className="flex items-baseline justify-between gap-4">
 										<span>{name}</span>
-										{level && <span className="font-thin text-gray-500" style={{ fontSize: '.6rem' }}>({level})</span>}
+										{level && <span className="font-thin text-gray-500 min-w-max" style={{ fontSize: '.6rem' }}>({level})</span>}
 									</div>
 								</li>
 							)}
 						</ul>
 					)}
 				</div>
+			</td>
+		</tr>}
+
+		{cv.references?.length && <tr> {/* References */}
+			<td className={styles.side}>
+				<h2>{lbl.references}</h2>
+			</td>
+			<td className={cx(styles.main, 'flex flex-wrap gap-8')}>
+				{cv.references.map(ref =>
+					<div className="bg-gray-100 p-4">
+						<h5>{ref.name} {ref.last_name}</h5>
+						<div>{ref.title}</div>
+						<a href={`mailto:${ref.contact_info.email}`} className='min-w-max block'>
+							<Icon icon={['far', 'envelope']}/> {ref.contact_info.email}
+						</a>
+						{false && ref.contact_info.phone && 
+						<a href={`tel:${digits(ref.contact_info.phone!)}`} className='min-w-max block'>
+							<Icon icon='mobile-screen'/> {ref.contact_info.phone}
+						</a>}
+					</div>
+				)}
 			</td>
 		</tr>}
 	</TableLayout>

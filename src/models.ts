@@ -6,7 +6,7 @@ export type Institution = { name: string; link?: string; location?: Location }
 export type RoughYearMonth = { year: number, month?: number }
 export type Timeframe = { from: RoughYearMonth; to?: RoughYearMonth }
 export type YearMonth = { year: number; month: number }
-export type ContactInfo = { phone: string; email?: string }
+export type ContactInfo = { email: string; phone?: string }
 
 export interface Resume {
 	profile: {

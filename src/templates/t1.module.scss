@@ -4,7 +4,8 @@ table.content {
 	td { @apply align-baseline; }
 
 	td.side {
-		@apply text-right min-w-max;
+		@apply text-right min-w-max print:w-1/5;
+		// @media print { @apply w-1/5; }
 		font-family: 'Zuume Cut';
 		h2 { 
 			@apply border-b-2 uppercase tracking-widest font-normal pl-4 min-w-max;
@@ -14,8 +15,8 @@ table.content {
 		@apply px-12 pb-8 text-sm;
 
 		.block {
-			@apply flex py-2 px-4 bg-gray-100;
-			& > * { @apply flex-1; }
+			@apply flex flex-wrap py-2 px-4 bg-gray-100;
+			& > * { @apply flex-1 mr-8; }
 		}
 
 		h1 {
