@@ -1,0 +1,45 @@
+table.content {
+	@apply w-full mt-4;
+
+	td { @apply align-baseline; }
+
+	td.side {
+		@apply text-right min-w-max;
+		font-family: 'Zuume Cut';
+		h2 { 
+			@apply border-b-2 uppercase tracking-widest font-normal pl-4 min-w-max;
+		}
+	}
+	td.main {
+		@apply px-12 pb-8 text-sm;
+
+		.block {
+			@apply flex py-2 px-4 bg-gray-100;
+			& > * { @apply flex-1; }
+		}
+
+		h1 {
+			@apply font-medium uppercase text-6xl;
+			font-family: 'Zuume Cut';
+			letter-spacing: .75rem;
+		}
+		h3 {
+			font-family: 'Zuume Cut';
+			@apply text-gray-500 font-light uppercase tracking-wider;
+		}
+		h4 {
+			@apply font-thin uppercase text-base;
+			font-family: 'Roboto';
+		}
+
+		.duration {
+			@apply text-xs font-light text-gray-500;
+			font-size: .6rem;
+		}
+
+		.bluff { @apply font-light; }
+		ul.bluff li {
+			@apply list-disc whitespace-pre-wrap;
+		}
+	}
+}
