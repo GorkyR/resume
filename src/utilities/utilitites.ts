@@ -126,3 +126,27 @@ export function format_year_month(year_month: RoughYearMonth, lang: Language = '
 		year_month.year
 	].clean().join(' ')
 }
+
+export function global_hotkey(keys: string | string[], callback: () => void): () => void {
+	keys = (typeof keys === 'string'
+		? keys.split('+').map(key => key.trim().toLowerCase())
+		: keys.map(key => key.toLowerCase()))
+	keys = keys.map(k => k === 'space'? ' ' : k)
+	const listener = (event: KeyboardEvent) => {
+		let { key, shiftKey, ctrlKey, altKey } = event
+		key = key.toLowerCase()
+		if (
+			['input', 'select','textarea'].every(tag => !(event.target as any as HTMLElement).matches(tag)) &&
+			(!['shift', 'ctrl', 'alt'].includes(key) && keys.includes(key)) &&
+			(!keys.includes('shift') || shiftKey) &&
+			(!keys.includes('ctrl')  || ctrlKey) &&
+			(!keys.includes('alt')   || altKey)
+		) {
+			callback()
+			event.preventDefault()
+			event.stopPropagation()
+		}
+	}
+	window.addEventListener('keydown', listener)
+	return () => window.removeEventListener('keydown', listener)
+}
