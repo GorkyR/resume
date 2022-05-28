@@ -78,7 +78,7 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 			</td>
 		</tr>}
 
-		{cv.experience?.length && <tr> {/* Work Experience */}
+		{cv.experience?.length? <tr> {/* Work Experience */}
 			<td className={styles.side}>
 				<h2>{lbl.work_experience}</h2>
 			</td>
@@ -115,9 +115,9 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 								</ul>)}
 					</div>)}
 			</td>
-		</tr>}
+		</tr> : null}
 
-		{cv.education?.length && <tr> {/* Education */}
+		{cv.education?.length? <tr> {/* Education */}
 			<td className={styles.side}>
 				<h2>{lbl.education}</h2>
 			</td>
@@ -145,9 +145,9 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 						)}
 				</div>
 			</td>
-		</tr>}
+		</tr> : null}
 		
-		{cv.skills?.length && <tr> {/* Skills */}
+		{cv.skills?.length? <tr> {/* Skills */}
 			<td className={styles.side}>
 				<h2>{lbl.skills}</h2>
 			</td>
@@ -167,9 +167,9 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 					)}
 				</div>
 			</td>
-		</tr>}
+		</tr> : null}
 
-		{cv.references?.length && <tr> {/* References */}
+		{cv.references?.length? <tr> {/* References */}
 			<td className={styles.side}>
 				<h2>{lbl.references}</h2>
 			</td>
@@ -188,6 +188,6 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 					</div>
 				)}
 			</td>
-		</tr>}
+		</tr> : null}
 	</TableLayout>
 }

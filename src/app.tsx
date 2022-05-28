@@ -4,6 +4,8 @@ import labels from "./labels"
 import { swx } from "./utilities/react.utilities"
 import { useEffect, useState } from "react"
 import { global_hotkey } from "./utilities/utilitites"
+import { usePrint } from "./components/printer"
+import Icon from "./components/icon"
 
 export function App() {
   const [language, setLang] = useState<Language>('en')
@@ -177,12 +179,34 @@ export function App() {
           phone: '+1 (849) 206-8413',
         },
       }
-    ]
+    ],
   }
 
-  useEffect(() => global_hotkey('p', window.print), [])
+  useEffect(() => {
+    document.title = `Résumé | ${resume.profile.name} ${resume.profile.last_name}`
+  }, [resume.profile.name + resume.profile.last_name])
+
   useEffect(() => global_hotkey('l', () => setLang(l => l == 'en'? 'es' : 'en')), [])
   useEffect(() => global_hotkey('s', () => {}), [])
 
-  return <Template1 resume={resume} language={language}/>
+  const content = <Template1 resume={resume} language={language}/>
+  
+  const print = usePrint()
+  useEffect(() => global_hotkey('p', () => print(content)), [language])
+
+  return <div className="relative">
+    {content}
+    <div className="fixed top-0 right-0 grid place-items-start gap-1 text-xs p-2">
+      <button
+        onClick={() => setLang(l => l == 'en'? 'es' : 'en')}
+        className="border rounded px-2 py-1 bg-white hover:bg-neutral-100">
+        <Icon icon="language"/> {swx(language, { en: 'Language', es: 'Lenguaje' })}: {swx(language, { en: '[en] es', es: 'en [es]' })}
+      </button>
+      <button
+        onClick={() => print(content)} 
+        className="border rounded px-2 py-1 bg-white hover:bg-neutral-100">
+        <Icon icon="print"/> {swx(language, { en: 'Print', es: 'Imprimir' })}
+      </button>
+    </div>
+  </div>
 }

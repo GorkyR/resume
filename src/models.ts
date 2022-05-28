@@ -48,7 +48,7 @@ export interface Resume {
 		relationship?: string
 		institution?: Institution
 		contact_info: ContactInfo
-	}[]
+	}[],
 }
 
 export type Language = 'en' | 'es'

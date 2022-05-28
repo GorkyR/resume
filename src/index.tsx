@@ -9,6 +9,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import './styles.scss'
 
 import './utilities/extensions'
+import Printer from './components/printer';
 
 library.add(fas, far, fab)
 
@@ -16,7 +17,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <Printer>
     <App />
-  </React.StrictMode>
+  </Printer>
 );

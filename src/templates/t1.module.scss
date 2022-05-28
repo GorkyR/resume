@@ -1,5 +1,9 @@
 table.content {
 	@apply w-full mt-4;
+	max-width: min(100%, 864px);
+	margin-inline: auto;
+
+	@media print { max-width: 100%; }
 
 	td { @apply align-baseline; }
 
