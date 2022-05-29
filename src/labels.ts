@@ -21,6 +21,7 @@ interface Labels {
 		certification: string
 	}
 	references: string
+	projects: string
 }
 
 const en: Labels = {
@@ -44,6 +45,7 @@ const en: Labels = {
 		certification: titlecase('certification')
 	},
 	references: titlecase('references'),
+	projects: titlecase('personal projects'),
 }
 
 const es: Labels = {
@@ -52,7 +54,7 @@ const es: Labels = {
 	work_experience: titlecase('experiencia laboral', 'es'),
 	education: titlecase('educación', 'es'),
 	skills: titlecase('habilidades', 'es'),
-	email: titlecase('correo electrónico', 'es'),
+	email: titlecase('correo', 'es'),
 	phone: titlecase('teléfono', 'es'),
 	levels: {
 		expert: titlecase('experto', 'es'),
@@ -67,6 +69,7 @@ const es: Labels = {
 		certification: titlecase('certificación', 'es'),
 	},
 	references: titlecase('referencias', 'es'),
+	projects: titlecase('proyectos personales', 'es'),
 }
 
 export default { en, es }

@@ -41,6 +41,15 @@ export interface Resume {
 		name: string
 		level?: string
 	}[]
+	projects?: {
+		title: string
+		description: string | string[]
+		image?: string
+		links?: {
+			label: string
+			url: string
+		}[]
+	}[]
 	references?: {
 		name: string
 		last_name: string

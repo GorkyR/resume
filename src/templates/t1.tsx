@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Icon from "../components/icon";
+import Modal from "../components/modal";
 import TableLayout from "../components/table-layout";
 import labels from "../labels";
 import { Language, Resume } from "../models";
@@ -10,6 +12,8 @@ import styles from './t1.module.scss'
 
 export default function Template1({ resume: cv, language: lang, printing }: { resume: Resume, language?: Language, printing?: boolean }) {
 	const lbl = labels[lang ?? 'en']
+
+	const [activeImage, setActiveImage] = useState<string>()
 
 	return <TableLayout className={cx(styles.content)}>
 		<tr> {/* Header */}
@@ -105,7 +109,7 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 								</span> – <span title={exp.timeframe.to && format_year_month(exp.timeframe.to, lang)}>
 									{exp.timeframe.to?.year ?? lbl.present}
 								</span>
-								<span className={styles.duration}> ({!exp.timeframe.to && '≥'}{format_timeframe(exp.timeframe, lang)})</span>
+								{/* <span className={styles.duration}> ({!exp.timeframe.to && '≥'}{format_timeframe(exp.timeframe, lang)})</span> */}
 							</div>
 						</div>
 						{exp.brag && (typeof exp.brag == 'string'
@@ -189,5 +193,45 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 				)}
 			</td>
 		</tr> : null}
+
+		{cv.projects?.length? <tr>
+			<td className={cx(styles.side, '!align-top')}>
+				<h2>{lbl.projects}</h2>
+			</td>
+			<td className={cx(styles.main, 'grid gap-6')}>
+				{cv.projects.map(pro => 
+					<div>
+						<div className="flex gap-4">
+							{pro.image && <a href={pro.image} target="_blank" className="self-center cursor-zoom-in">
+								<img
+									src={pro.image} alt={pro.title}
+									className="max-h-[200px] max-w-[250px] object-contain"
+									onMouseEnter={() => setActiveImage(pro.image)}
+									onMouseLeave={() => setActiveImage(undefined)}/>
+							</a>}
+							<div className="flex flex-col border-l pl-4">
+								<h3>{pro.title}</h3>
+								<div className="flex-1">
+									{typeof pro.description == 'string'
+										? <p>{pro.description}</p>
+										: pro.description.clean().map(d => <p>{d}</p>).interspace(<br/>)}
+								</div>
+								<div className="flex flex-wrap gap-4 print:flex-col print:gap-1 items-baseline text-blue-600 mt-4">
+									{pro.links?.map(({ label, url }) => 
+										<a href={url} target='_blank'>{!printing? `(${label})` : `${label}: ${url}`}</a>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				)}
+			</td>
+		</tr> : null}
+
+		{activeImage && <Modal
+			backdropClassName="pointer-events-none !bg-black !bg-opacity-50"
+			className="pointer-events-none !bg-transparent !shadow-none">
+			<img src={activeImage} className="object-contain max-h-[90vh]"/>
+		</Modal>}
 	</TableLayout>
 }

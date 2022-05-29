@@ -8,6 +8,7 @@ declare global {
 		chunk(length: number): T[][]
 		split_into(count: number): T[][]
 		clean(): T[]
+		interspace<I>(item: I): (T | I)[]
 	}
 	interface String {
 		title(language?: Language): string
@@ -29,6 +30,16 @@ Array.prototype.split_into ??= function<T>(this: T[], count: number){
 
 Array.prototype.clean ??= function<T>(this: T[]) {
 	return this.filter(_ => _)
+}
+
+Array.prototype.interspace ??= function<T, I>(this: T[], separator: I) {
+	if (this.length <= 1) return this.slice()
+	const interspaced: (T | I)[] = [this[0]]
+	for (let item of this.slice(1)) {
+		interspaced.push(separator)
+		interspaced.push(item)
+	}
+	return interspaced
 }
 
 String.prototype.title ??= function(this: string, language: Language = 'en') {
