@@ -62,8 +62,8 @@ export function App() {
           es: "Desarrollador de Software",
         }),
         timeframe: {
-          from: { year: 2020, month: 11 },
-          to: { year: 2021, month: 11 },
+          from: { year: 2018, month: 11 },
+          to: { year: 2020, month: 11 },
         },
         brag: [
           swx(language, {
@@ -98,7 +98,7 @@ export function App() {
           es: "Desarrollador de Software Senior",
         }),
         timeframe: {
-          from: { year: 2021, month: 11 },
+          from: { year: 2020, month: 11 },
         },
         brag: [
           swx(language, {
