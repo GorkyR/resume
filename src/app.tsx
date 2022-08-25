@@ -153,8 +153,8 @@ export function App() {
           es: "Licenciatura en Informática",
         }),
         timeframe: {
-          from: { year: 2016, month: 1 },
-          to: { year: 2020, month: 11 },
+          from: { year: 2015, month: 2 },
+          to: { year: 2019, month: 2 },
         },
       },
     ],
