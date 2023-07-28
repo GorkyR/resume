@@ -31,6 +31,12 @@ export function App() {
     location: santo_domingo,
   };
 
+  const gbh: Institution = {
+    name: 'GBH',
+    link: 'https://gbh.com.do/',
+    location: santo_domingo
+  }
+
   const source = swx(language, { en: "Source", es: "Código fuente" });
 
   const resume: Resume = {
@@ -99,6 +105,7 @@ export function App() {
         }),
         timeframe: {
           from: { year: 2020, month: 11 },
+          to: { year: 2023, month: 2 },
         },
         brag: [
           swx(language, {
@@ -135,6 +142,34 @@ export function App() {
           }),
         ],
       },
+      {
+        institution: gbh,
+        title: swx(language, {
+          en: 'Mid Software Developer',
+          es: 'Desarrollador de Software Mid'
+        }),
+        timeframe: {
+          from: { year: 2023, month: 2 },
+        },
+        brag: [
+          swx(language, {
+            en: "Develop enterprise mobile application front-ends with Angular.",
+            es: "Desarrollar front-ends de aplicaciones mobile empresariales con Angular.",
+          }),
+          swx(language, {
+            en: "Develop mobile apps with Angular + Ionic.",
+            es: "Desarrollar aplicaciones móviles con Angular + Ionic.",
+          }),
+          swx(language, {
+            en: "Requirement analysis, feature design, planning and estimation sessions with Product Owners.",
+            es: "Sesiones de análisis de requerimientos, diseño de funcionalidades, planificación y estimación con los Product Owners.",
+          }),
+          swx(language, {
+            en: "Power the establishment company code and architecture standards and best-practices, and ensure adherance to company standards via code review for development teams.",
+            es: "Potenciar el establecimiento de estándares y mejores-prácticas de código y arquitectura para la empresa, y asegurar el cumplimiento de los estándares a través de revisiones de código para los equipos de desarrollo.",
+          }),
+        ]
+      },
     ],
     education: [
       {
@@ -159,7 +194,7 @@ export function App() {
       },
     ],
     skills: [
-      { name: "ReactJS", level: lbl.levels.advanced },
+      { name: "ReactJS", level: lbl.levels.expert },
       { name: "Angular", level: lbl.levels.expert },
       { name: "ASP.NET", level: lbl.levels.expert },
       { name: "NodeJS", level: lbl.levels.advanced },
@@ -171,6 +206,19 @@ export function App() {
       { name: "Spanish", level: "5 / C2" },
     ],
     references: [
+      
+      {
+        name: "Luis",
+        last_name: "Tejada",
+        title: swx(language, {
+          en: "Tech Lead, Senior Software Developer",
+          es: "Líder Técnico, Desarrollador Senior",
+        }),
+        contact_info: {
+          email: "tejadaluisant@gmail.com",
+          phone: "+1 (829) 693-6489",
+        },
+      },
       {
         name: "Jean Carlo",
         last_name: "Jimenez",
@@ -185,19 +233,6 @@ export function App() {
       },
     ],
     projects: [
-      // {
-      //   title: 'Quota',
-      //   description: swx(language, {
-      //     en: [
-      //       '',
-      //       '(Sold)'
-      //     ],
-      //     es: [
-      //       '',
-      //       '(Vendida)'
-      //     ]
-      //   }),
-      // },
       {
         title: "Finn",
         description: swx(language, {

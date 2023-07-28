@@ -88,6 +88,7 @@ export default function Template1({ resume: cv, language: lang, printing }: { re
 			</td>
 			<td className={cx(styles.main, 'flex flex-col gap-6')}>
 				{cv.experience
+					.reverse()
 					.sort_by([
 						(e, i) => e.timeframe.to?.year  ?? (1_000_000 + i),
 						(e, i) => e.timeframe.to?.month ?? (1_000_000 + i),
